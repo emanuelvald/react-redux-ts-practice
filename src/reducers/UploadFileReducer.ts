@@ -1,8 +1,8 @@
-import { TError, TFile, UPLOAD_FILE_SUCCESS, UploadFileTypes } from '../types/types';
+import { TError, UPLOAD_FILE_SUCCESS, UploadFileTypes } from '../types/types';
 
 interface IState {
   loading: boolean;
-  uploadFile: TFile | null;
+  uploadFile: FileList | null;
   error: TError | null;
 }
 
@@ -14,7 +14,7 @@ const initialState: IState = {
 
 const uploadFileReducer = (
   state: IState = initialState,
-  action: UploadFileTypes
+  action: UploadFileTypes,
 ): IState => {
   switch (action.type) {
     case UPLOAD_FILE_SUCCESS:

@@ -1,18 +1,24 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { TFile, UPLOAD_FILE_ERROR, UPLOAD_FILE_SUCCESS, UploadFileTypes } from '../types/types';
+import { UPLOAD_FILE_ERROR, UPLOAD_FILE_SUCCESS, UploadFileTypes } from '../types/types';
 
-export const addProductAction = (file: TFile) => (
-  dispatch: Dispatch<UploadFileTypes>
+export const uploadFileAction = (data: FormData | undefined) => (
+  dispatch: Dispatch<UploadFileTypes>,
 ) => {
+  console.log('uploadFileAction: ', data);
   axios
-    .post("localhost:3000/file-parser/upload", file)
+    .post('http://localhost:3000/file-parser/upload', data, {
+      headers: {
+        'Content-Type':
+          'multipart/form-data;boundary=<calculated when request is sent>',
+      },
+    })
     .then(() =>
       dispatch({
         type: UPLOAD_FILE_SUCCESS,
-        payload: file,
-      })
+        payload: null,
+      }),
     )
     .catch((error) => {
       dispatch({

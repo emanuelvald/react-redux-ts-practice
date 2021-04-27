@@ -1,10 +1,10 @@
-export const UPLOAD_FILE = "UPLOAD_FILE";
-export const UPLOAD_FILE_SUCCESS = "UPLOAD_FILE_SUCCESS";
-export const UPLOAD_FILE_ERROR = "UPLOAD_FILE_ERROR";
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const UPLOAD_FILE_SUCCESS = 'UPLOAD_FILE_SUCCESS';
+export const UPLOAD_FILE_ERROR = 'UPLOAD_FILE_ERROR';
 
-export type TFile = {
-  file: File;
-};
+/* export type TFile = {
+  file: FileList;
+}; */
 
 export type TError = {
   code: string;
@@ -18,7 +18,7 @@ export interface UploadFile {
 
 export interface UploadFileSuccess {
   type: typeof UPLOAD_FILE_SUCCESS;
-  payload: TFile;
+  payload: FileList | null;
 }
 
 export interface UploadFileError {
